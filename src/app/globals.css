@@ -1,0 +1,186 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #171307;
+  --surface: #171307;
+  --surface-dim: #171307;
+  --surface-bright: #3f392a;
+  --surface-container-lowest: #120e04;
+  --surface-container-low: #201b0e;
+  --surface-container: #241f12;
+  --surface-container-high: #2f291c;
+  --surface-container-highest: #3a3426;
+  --on-surface: #ece1cc;
+  --on-surface-variant: #c4c7c7;
+  --inverse-surface: #ece1cc;
+  --inverse-on-surface: #353022;
+  --outline: #8e9192;
+  --outline-variant: #444748;
+  --surface-tint: #c9c6c5;
+  --primary: #c9c6c5;
+  --on-primary: #313030;
+  --primary-container: #0a0a0a;
+  --on-primary-container: #7b7979;
+  --inverse-primary: #5f5e5e;
+  --secondary: #e6c364;
+  --on-secondary: #3d2e00;
+  --secondary-container: #785d00;
+  --on-secondary-container: #fdd977;
+  --tertiary: #c8c6c5;
+  --on-tertiary: #313030;
+  --tertiary-container: #0a0a0a;
+  --on-tertiary-container: #7a7979;
+  --error: #ffb4ab;
+  --on-error: #690005;
+  --error-container: #93000a;
+  --on-error-container: #ffdad6;
+  --primary-fixed: #e5e2e1;
+  --primary-fixed-dim: #c9c6c5;
+  --on-primary-fixed: #1c1b1b;
+  --on-primary-fixed-variant: #474646;
+  --secondary-fixed: #ffe08f;
+  --secondary-fixed-dim: #e6c364;
+  --on-secondary-fixed: #241a00;
+  --on-secondary-fixed-variant: #584400;
+  --tertiary-fixed: #e5e2e1;
+  --tertiary-fixed-dim: #c8c6c5;
+  --on-tertiary-fixed: #1c1b1b;
+  --on-tertiary-fixed-variant: #474646;
+  --on-background: #ece1cc;
+  --surface-variant: #3a3426;
+  --accent-gold-light: #e8c97a;
+  --text-primary: #f5f0e8;
+  --divider: #2a2620;
+  --brand-red: #e51920;
+  --grain-opacity: 0.03;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-dim: var(--surface-dim);
+  --color-surface-bright: var(--surface-bright);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container: var(--surface-container);
+  --color-surface-container-high: var(--surface-container-high);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-on-surface: var(--on-surface);
+  --color-on-surface-variant: var(--on-surface-variant);
+  --color-inverse-surface: var(--inverse-surface);
+  --color-inverse-on-surface: var(--inverse-on-surface);
+  --color-outline: var(--outline);
+  --color-outline-variant: var(--outline-variant);
+  --color-surface-tint: var(--surface-tint);
+  --color-primary: var(--primary);
+  --color-on-primary: var(--on-primary);
+  --color-primary-container: var(--primary-container);
+  --color-on-primary-container: var(--on-primary-container);
+  --color-inverse-primary: var(--inverse-primary);
+  --color-secondary: var(--secondary);
+  --color-on-secondary: var(--on-secondary);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  --color-tertiary: var(--tertiary);
+  --color-on-tertiary: var(--on-tertiary);
+  --color-tertiary-container: var(--tertiary-container);
+  --color-on-tertiary-container: var(--on-tertiary-container);
+  --color-error: var(--error);
+  --color-on-error: var(--on-error);
+  --color-error-container: var(--error-container);
+  --color-on-error-container: var(--on-error-container);
+  --color-primary-fixed: var(--primary-fixed);
+  --color-primary-fixed-dim: var(--primary-fixed-dim);
+  --color-on-primary-fixed: var(--on-primary-fixed);
+  --color-on-primary-fixed-variant: var(--on-primary-fixed-variant);
+  --color-secondary-fixed: var(--secondary-fixed);
+  --color-secondary-fixed-dim: var(--secondary-fixed-dim);
+  --color-on-secondary-fixed: var(--on-secondary-fixed);
+  --color-on-secondary-fixed-variant: var(--on-secondary-fixed-variant);
+  --color-tertiary-fixed: var(--tertiary-fixed);
+  --color-tertiary-fixed-dim: var(--tertiary-fixed-dim);
+  --color-on-tertiary-fixed: var(--on-tertiary-fixed);
+  --color-on-tertiary-fixed-variant: var(--on-tertiary-fixed-variant);
+  --color-on-background: var(--on-background);
+  --color-surface-variant: var(--surface-variant);
+  --color-accent-gold-light: var(--accent-gold-light);
+  --color-text-primary: var(--text-primary);
+  --color-divider: var(--divider);
+  --color-brand-red: var(--brand-red);
+  --font-display: var(--font-playfair);
+  --font-body: var(--font-caslon);
+  --font-ui: var(--font-outfit);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    height: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100%;
+    background: var(--background);
+    color: var(--on-surface);
+    font-family: var(--font-caslon), serif;
+    text-rendering: optimizeLegibility;
+  }
+}
+
+@layer utilities {
+  .grain-overlay {
+    background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB-B4bOwN0OHanICBFQDEdFqzjZCixh8JpiNlOx8taPttQwVhf8oiQhFqmcH-Q0T9QLwpV_SpeXzoe2zZ6kZvGOmD6ykbdbBRiGj7fEEpCGBhYYFZQ0NMSpU2hlb9izbqR0DxdGowHmIvyrOtOaBmS3HmCkok6f_s0Mi9Pa38MNRuYVLTfmWkqaAtv3wEc2zBqjUAJ1pTxipEWRW5fuZhKhT1RxkVZP93gHo3yclAHCAszGimZFs_Z8khPHWG8cLt0k986ESQ3Vh3yE");
+    opacity: var(--grain-opacity);
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-150 {
+    transition-delay: 150ms;
+  }
+
+  .reveal-delay-200 {
+    transition-delay: 200ms;
+  }
+
+  .reveal-delay-300 {
+    transition-delay: 300ms;
+  }
+
+  .reveal-delay-400 {
+    transition-delay: 400ms;
+  }
+
+  .reveal-delay-450 {
+    transition-delay: 450ms;
+  }
+
+  .ticker-track {
+    width: max-content;
+    animation: scroll-ticker 30s linear infinite;
+  }
+}
+
+@keyframes scroll-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
