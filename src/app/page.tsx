@@ -32,11 +32,11 @@ export default function HomePage() {
         <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src={cloudinaryUrl("shin/seat.png", "h_1600,q_auto,f_auto")}
+              src={cloudinaryUrl("shin/seat.png", "h_800,q_auto,f_auto")}
               alt="John Shin - Seat"
               fill
               sizes="100vw"
-              className="object-cover grayscale opacity-40 scale-75 origin-top"
+              className="object-cover grayscale opacity-40"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/70" />
