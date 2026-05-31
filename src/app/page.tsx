@@ -32,7 +32,7 @@ export default function HomePage() {
         <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0">
             <Image
-              src={cloudinaryUrl("shin/seat.png", "h_1600,q_auto,f_auto")}
+              src={cloudinaryUrl("shin/seat.png")}
               alt="John Shin - Seat"
               fill
               sizes="100vw"
