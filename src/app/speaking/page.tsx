@@ -31,14 +31,14 @@ export default function SpeakingPage() {
         <Container>
           <Reveal className="text-center max-w-4xl mx-auto mb-16">
             <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
-              World-Class Keynote Speaker
+              World Class Speaker
             </p>
             <h1 className="font-display text-[40px] md:text-[64px] text-on-surface mb-6">
               Architecting the Unthinkable.
             </h1>
             <p className="font-body text-[18px] text-on-surface-variant">
-              John C. Shin delivers high-impact narratives on leadership,
-              executive mindset, and the mechanics of modern empire building.
+              John Shin delivers high-impact narratives on leadership, executive
+              mindset, and the mechanics of modern empire building.
             </p>
           </Reveal>
           <Reveal>
@@ -375,7 +375,6 @@ export default function SpeakingPage() {
           </div>
         </Container>
       </section>
-
     </div>
   );
 }

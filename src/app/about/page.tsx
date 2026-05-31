@@ -42,6 +42,24 @@ const timelineItems = [
     description:
       "Executive produced a global documentary film and authored bestselling leadership works.",
   },
+  {
+    year: "2020",
+    title: "Author and Educator",
+    description:
+      "Published the book “How Rich Asians Think” on January 6, 2020, a contemporary interpretation of Hill's philosophies tailored to the Asian community. The book combines modern insights with actionable steps, aiming to inspire readers to achieve their personal and financial goals.",
+  },
+  {
+    year: "2021",
+    title: "Philanthropy and Recognition",
+    description:
+      "Co-Founded the non-profit organization 'ALL FOR ONE', which has established nine orphanages in countries including Uganda, the Philippines, Nicaragua, Vietnam, China, and India, supporting over 1,000 children.",
+  },
+  {
+    year: "2024",
+    title: "Featured Thought Leader",
+    description:
+      "Featured in Entrepreneur Magazine for promoting purpose-driven success in a distracted, noisy world. Advocates for combining wealth-building with impact, encouraging entrepreneurs to pursue goals aligned with their purpose and values.",
+  },
 ];
 
 const quotes = [
@@ -59,15 +77,18 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
             <Reveal className="md:col-span-7">
               <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
-                Executive Philosophy
+                A Brief Journey of a Visionary Philanthropist
               </p>
               <h1 className="font-display text-[40px] md:text-[64px] leading-tight text-on-surface mb-6">
-                Architect of Modern Legacies.
+                Who&apos;s John C. Shin?
               </h1>
               <p className="font-body text-[18px] text-on-surface-variant max-w-xl">
-                Sir John C. Shin is a visionary entrepreneur, philanthropist,
-                and strategic advisor empowering leaders through intellectual
-                capital and human empathy.
+                <strong>John Shin</strong> is a serial entrepreneur,
+                philanthropist, movie producer, author, motivational speaker and
+                critically acclaimed business coach. He has started over 26
+                different companies from scratch which have all become multi-
+                million-dollar enterprises and is the Co-Founder of the ALL FOR
+                ONE Foundation and sits on over 6 different boards of charities.
               </p>
             </Reveal>
             <Reveal className="md:col-span-5" delayMs={150}>
@@ -94,23 +115,31 @@ export default function AboutPage() {
               </h2>
               <div className="space-y-6 font-body text-[16px] text-on-surface-variant leading-relaxed">
                 <p>
-                  Educated at the University of Southern California, John built
-                  his foundation in business and law before reshaping the
-                  financial world. As founder of AXIANTA Financial Partners, he
-                  scaled a national organization with a culture of discipline
-                  and ethical rigor.
+                  Educated at the University of Southern California, John Shin
+                  earned degrees in Business Administration and Law, laying the
+                  foundation for a diverse career spanning entrepreneurship,
+                  finance, and leadership. Early in his journey, he explored
+                  business through ventures in valet services and real estate,
+                  followed by a brief corporate role at Coca-Cola before
+                  transitioning into financial services.
                 </p>
+
                 <p>
-                  His contributions have been recognized by Forbes and other
-                  premier publications. Beyond the boardroom, his passion for
-                  storytelling led him to executive produce cinematic projects
-                  and author best-selling works that translate complex success
-                  principles into timeless wisdom.
+                  In 1994, together with his wife Arlene, he entered the
+                  financial services industry and went on to build a nationwide
+                  organization with over 128 offices across 42 states. Through
+                  mentorship and training, he has helped develop hundreds of
+                  thousands of entrepreneurs, with a strong focus on financial
+                  literacy and leadership development.
                 </p>
+
                 <p>
-                  His most enduring legacy is service. Through All For One, John
-                  has led global initiatives to improve education and healthcare
-                  for women and children worldwide.
+                  Beyond business, John is an executive producer of{" "}
+                  <em>Think and Grow Rich: The Legacy</em> and an author
+                  connected to works inspired by the classic success philosophy
+                  of Napoleon Hill. He continues to speak globally, inspiring
+                  audiences with a message centered on mentorship, mindset, and
+                  personal growth.
                 </p>
               </div>
             </Reveal>
@@ -187,7 +216,7 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-14">
             <Reveal>
               <h3 className="font-display text-[28px] md:text-[32px] text-on-surface">
-                Editorial Perspectives
+                A glimpse from the past
               </h3>
               <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-on-surface-variant">
                 A Vignette of Leadership
@@ -195,7 +224,7 @@ export default function AboutPage() {
             </Reveal>
             <Reveal delayMs={150}>
               <Link
-                href="/contact"
+                href="/#contact"
                 className={buttonStyles({ variant: "outline" })}
               >
                 View Full Archive
@@ -253,7 +282,7 @@ export default function AboutPage() {
             <Reveal>
               <IconCard
                 icon={<Award className="h-8 w-8" />}
-                title="Forbes Council"
+                title="Forbes Magazine"
                 description="Recognized for outstanding contributions to global business leadership."
               />
             </Reveal>
@@ -268,7 +297,7 @@ export default function AboutPage() {
               <IconCard
                 icon={<Film className="h-8 w-8" />}
                 title="Film Excellence"
-                description="Executive producer of socially impactful documentary storytelling."
+                description="Executive producer of socially impactful documentary storytelling and something."
               />
             </Reveal>
           </div>
@@ -300,7 +329,6 @@ export default function AboutPage() {
           </Reveal>
         </Container>
       </section>
-
     </div>
   );
 }
