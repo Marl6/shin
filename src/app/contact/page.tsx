@@ -1,11 +1,25 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Mail, Share2 } from "lucide-react";
-
+import { Mail } from "lucide-react";
+import {
+  FaInstagram,
+  FaYoutube,
+  FaLinkedin,
+  FaXTwitter,
+} from "react-icons/fa6";
 import Container from "@/components/layout/Container";
 import { buttonStyles } from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import type { IconType } from "react-icons";
+import SpeakingForm from "@/components/ui/Form";
+
+const socials: [string, string, IconType][] = [
+  ["LinkedIn", "https://www.linkedin.com", FaLinkedin],
+  ["Instagram", "https://www.instagram.com", FaInstagram],
+  ["YouTube", "https://www.youtube.com", FaYoutube],
+  ["Twitter / X", "https://x.com", FaXTwitter],
+];
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -27,7 +41,7 @@ export default function ContactPage() {
                   Get In Touch
                 </p>
                 <h1 className="font-display text-[48px] md:text-[72px] text-on-surface leading-tight">
-                  Let's Start a Conversation.
+                  Let&apos;s Start a Conversation.
                 </h1>
               </div>
               <div className="md:col-span-5">
@@ -47,76 +61,9 @@ export default function ContactPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
             <Reveal className="lg:col-span-7">
               <div className="bg-surface-container border border-divider p-8 md:p-12">
-                <form className="space-y-10">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
-                      <label
-                        htmlFor="contact-name"
-                        className="font-ui text-[10px] uppercase tracking-[0.2em] text-secondary block mb-2"
-                      >
-                        Full Name
-                      </label>
-                      <input
-                        id="contact-name"
-                        className="w-full bg-transparent border-b border-divider py-3 focus:border-secondary focus:ring-0"
-                        placeholder="John Doe"
-                        type="text"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="contact-email"
-                        className="font-ui text-[10px] uppercase tracking-[0.2em] text-secondary block mb-2"
-                      >
-                        Email Address
-                      </label>
-                      <input
-                        id="contact-email"
-                        className="w-full bg-transparent border-b border-divider py-3 focus:border-secondary focus:ring-0"
-                        placeholder="john@example.com"
-                        type="email"
-                      />
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="contact-subject"
-                      className="font-ui text-[10px] uppercase tracking-[0.2em] text-secondary block mb-2"
-                    >
-                      Inquiry Type
-                    </label>
-                    <select
-                      id="contact-subject"
-                      className="w-full bg-transparent border-b border-divider py-3 focus:border-secondary focus:ring-0"
-                    >
-                      <option value="general">General Inquiry</option>
-                      <option value="book">Book and Publication</option>
-                      <option value="film">Film and Production</option>
-                      <option value="speaking">Speaking Engagement</option>
-                      <option value="media">Media and Press</option>
-                      <option value="charity">Charity</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="contact-message"
-                      className="font-ui text-[10px] uppercase tracking-[0.2em] text-secondary block mb-2"
-                    >
-                      Message
-                    </label>
-                    <textarea
-                      id="contact-message"
-                      rows={5}
-                      className="w-full bg-transparent border-b border-divider py-3 focus:border-secondary focus:ring-0"
-                      placeholder="Tell us about your project or inquiry"
-                    />
-                  </div>
-                  <button
-                    className={buttonStyles({ variant: "outline", size: "lg" })}
-                  >
-                    Send Inquiry
-                  </button>
-                </form>
+                <SpeakingForm
+                  fields={["name", "email", "inquiryType", "details"]}
+                />
               </div>
             </Reveal>
             <div className="lg:col-span-5 flex flex-col gap-8">
@@ -141,21 +88,16 @@ export default function ContactPage() {
               <Reveal delayMs={200}>
                 <div className="bg-surface-container-lowest border border-divider p-8">
                   <h3 className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-6">
-                    Connect Digitally
+                    Connect on Socials
                   </h3>
                   <div className="grid grid-cols-2 gap-4">
-                    {[
-                      ["LinkedIn", "https://www.linkedin.com"],
-                      ["Instagram", "https://www.instagram.com"],
-                      ["YouTube", "https://www.youtube.com"],
-                      ["Twitter / X", "https://x.com"],
-                    ].map(([label, href]) => (
+                    {socials.map(([label, href, Icon]) => (
                       <Link
                         key={label}
                         href={href}
                         className="flex items-center gap-3 text-on-surface-variant hover:text-secondary"
                       >
-                        <Share2 className="h-4 w-4" />
+                        <Icon className="h-4 w-4" />
                         <span className="font-ui text-[10px] uppercase tracking-[0.2em]">
                           {label}
                         </span>
@@ -190,7 +132,7 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      <section className="py-20">
+      {/* <section className="py-20">
         <Container>
           <Reveal>
             <div className="border-t border-divider pt-12 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
@@ -219,8 +161,7 @@ export default function ContactPage() {
             </div>
           </Reveal>
         </Container>
-      </section>
-
+      </section> */}
     </div>
   );
 }

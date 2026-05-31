@@ -6,6 +6,7 @@ import { Heart, School, Users } from "lucide-react";
 import Container from "@/components/layout/Container";
 import { buttonStyles } from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import { cloudinaryUrl } from "@/lib/cloudinary";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -17,7 +18,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const impactStats = [
   {
-    label: "Women Empowered",
+    label: "Entrepreneurs Empowered",
     value: "12,500+",
     icon: <Users className="h-8 w-8" />,
   },
@@ -43,8 +44,9 @@ export default function GivingPage() {
             </h1>
             <p className="font-body text-[18px] text-on-surface-variant max-w-2xl mx-auto">
               Success is not measured by what we accumulate, but by the lives we
-              transform. Through our partnership with All For One, we are
-              building a legacy of hope and opportunity.
+              transform. Through our partnership with{" "}
+              <strong>All For One</strong>, we are building a legacy of hope and
+              opportunity.
             </p>
           </Reveal>
         </Container>
@@ -82,7 +84,7 @@ export default function GivingPage() {
             <Reveal delayMs={150}>
               <div className="relative aspect-square border border-divider overflow-hidden">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAbQfD10edeR8XurkHlz9iQ8O25W0eHaL5OVaHRpsRdP7vW581X01r0UhH-Hl3jyGkrAPHmxqjsClf3vDdDs__UP2XTTYSvzKGz1PuPngsWh-twJaGN_W5xknf3ipNdH0KiNk8-azZApeP2BIIworp7JnDMTIzZPv9aJv8UzBR3eFb9-NmjL8eZETzk4QpUZvb6VCrvDuTvw5yCdDRJA5If-pWmbtrXostGm8yDt2ms3kl2K7ocgpIHQ6rFkj7RXUjQOXxhQHcWreD"
+                  src={cloudinaryUrl("giving/image1")}
                   alt="Children supported by All For One"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -128,7 +130,7 @@ export default function GivingPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative aspect-[3/4] border border-divider overflow-hidden">
                   <Image
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKwr8uE9BGhDpvJ7uL0KTZ0IfQqSnQ_yN_Fk_3yQ17OtDW1nVaSueOuow9PNzcZdlUyQknHRelwbn5xlCC_Gk8w-ICzr0decKLVcQ8PHSF3n9Bcf5yp6EP1yeE6SBgspnjuAiZL2d3GW9s3s6fCIB0ln72f2w5KG0BhbaiyodyYZX9yBPB1pR-JTdf_r4prUkS2cWlR2opcOzwFZQ8lXthu8mXcUAMRYghxOVcCUrjWbMX4Ft9JAJZYXl2jzc6OGT8CTJL7LmTSOYp"
+                    src={cloudinaryUrl("giving/image1")}
                     alt="Nicaragua mission site"
                     fill
                     sizes="(max-width: 768px) 50vw, 30vw"
@@ -137,7 +139,7 @@ export default function GivingPage() {
                 </div>
                 <div className="relative aspect-[3/4] border border-divider overflow-hidden mt-10">
                   <Image
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmer6GX3o0zCPp9CXyYOHJ_Y1Np-8S77n_sdS3HNLaLgqgRZ_PLN8y131_j8cN6KY5gJhpX8cW3m5JOxFlHizw9f3s3l_f1eCJ6ymCQp_X8TDQ2L4hRRYnblS-HfQr9d0u4DBAXOJS0r98AlGXYPuYkbmMSsyC4h1bM5RQvioUbVKS5L4dR_xO9SUahYDdDJehOFELtpayshV2XwUOjh7t5TFpzHZDKl3bXHXMW4Ep1Dl9W5-8igkZv0snEsMmaEU3lGlChZDbCal4"
+                    src={cloudinaryUrl("giving/image1")}
                     alt="Community members in Nicaragua"
                     fill
                     sizes="(max-width: 768px) 50vw, 30vw"
@@ -164,8 +166,8 @@ export default function GivingPage() {
                 development and connect with the families being served.
               </p>
               <blockquote className="border-l-2 border-secondary pl-6 italic font-body text-[18px] text-on-surface">
-                "Real leadership is service. We are building futures, not just
-                structures."
+                &quot;Real leadership is service. We are building futures, not
+                just structures.&quot;
               </blockquote>
             </Reveal>
           </div>
@@ -196,7 +198,6 @@ export default function GivingPage() {
           </Reveal>
         </Container>
       </section>
-
     </div>
   );
 }

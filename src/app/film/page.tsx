@@ -7,6 +7,7 @@ import Container from "@/components/layout/Container";
 import { buttonStyles } from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import Stars from "@/components/ui/Stars";
+import { cloudinaryUrl } from "@/lib/cloudinary";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -18,26 +19,29 @@ export async function generateMetadata(): Promise<Metadata> {
 
 const accessOptions = [
   {
-    title: "Watch Online",
+    title: "Own a Copy and Watch Online",
     description:
-      "Access the full cinematic experience instantly. Includes bonus executive interviews.",
-    price: "$14.99",
+      "Access the full cinematic experience instantly. Stream and Download anytime!",
+    price: "$24.99",
     note: "Lifetime access",
-    cta: "Rent or Stream",
+    cta: "Own a copy now",
     highlight: "Best Value",
-    icon: <Film className="h-8 w-8" />,
+    icon: <Download className="h-8 w-8" />,
     variant: "outline" as const,
   },
   {
-    title: "Download to Own",
+    title: "Rent a copy",
     description:
-      "Keep the legacy forever. High-resolution digital master with bonus content.",
-    price: "$24.99",
-    note: "Digital master",
-    cta: "Download Now",
-    icon: <Download className="h-8 w-8" />,
-    variant: "primary" as const,
+      "48-hour streaming period. Perfect for a one-time watch of this unforgettable film.",
+    price: "$9.99",
+    note: "48-hour access",
+    cta: "Rent a copy now",
+    icon: <Film className="h-8 w-8" />,
+    variant: "outline" as const,
   },
+];
+
+/*
   {
     title: "External Platforms",
     description:
@@ -48,7 +52,7 @@ const accessOptions = [
     icon: <ExternalLink className="h-8 w-8" />,
     variant: "ghost" as const,
   },
-];
+*/
 
 export default function FilmPage() {
   return (
@@ -56,10 +60,10 @@ export default function FilmPage() {
       <header className="relative min-h-[90vh] flex items-end pb-16 overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFRMfeKTeUGh7oEGFQo3yyeKms-3k_L4n2KLSZsqXR9R7J04R84SP8goDQ8xtYUtYY2r7al9h1sQayogVWVIFaQXN0unXkxOzYAnzzjoLwsmaYFWWl9m9WRiYUbuVQWjt466r68m_Fj8NKQv6aW0KmXrLZkObl8zicmlVBVBAjIe0KJOGtXdkAqMoArplWfHxfSTMxp4Jb1p1TK9C60F5K1T6BAOXR4fU20H43UvaJFxHoksp-c4EuC_39flI8zN3v_GWQIWnSlxln"
-            alt="Cinematic library scene from the film"
+            src={cloudinaryUrl("movie/tgr")}
+            alt="tgrmovie"
             fill
-            sizes="100vw"
+            sizes="80vw"
             className="object-cover"
             priority
           />
@@ -67,47 +71,48 @@ export default function FilmPage() {
         </div>
         <Container className="relative z-10">
           <Reveal>
-            <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
-              Executive Producer: Sir John Shin
-            </p>
             <h1 className="font-display text-[40px] md:text-[64px] leading-tight text-on-surface max-w-4xl mb-8">
               Think and Grow Rich: The Legacy
             </h1>
+            <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
+              Documentary / Drama
+            </p>
             <div className="flex flex-wrap gap-4">
-              <button
+              <Link
                 className={buttonStyles({ variant: "primary", size: "lg" })}
+                href="/#trailer"
               >
                 <Play className="h-4 w-4" />
                 Watch Trailer
-              </button>
-              <button
+              </Link>
+              <Link
+                href="https://vimeo.com/ondemand/tgrlegacymovie"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={buttonStyles({ variant: "outline", size: "lg" })}
               >
-                View Showtimes
-              </button>
+                Purchase Here
+              </Link>
             </div>
           </Reveal>
         </Container>
       </header>
 
-      <section className="py-24 md:py-32 bg-surface-container-lowest">
+      <section
+        id="trailer"
+        className="py-24 md:py-32 bg-surface-container-lowest"
+      >
         <Container>
           <Reveal>
-            <div className="relative aspect-video w-full border border-divider overflow-hidden">
-              <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3dCqHFWtdeMyv5fIbSpY2OqXs_hqNlKkVFcc3cDNkitaY9X1Wz15Qt2ljnXjw03zPpUZTpta6sbLUmpoiTFEcqknBbwDsnsTfiqnvJGxDyma3EDa5krmcMFvBqy4RU1YgTXGQrdQL9Kz7wVPWIQ4KK4OJs3RVcZOq_KWASSFJbjtV-ZEvvP6DGkPq-un03BHm1hP8MlmqimkBVdIlKKMkywgrcF9BBzgWkYr_dW8dpVFb7dG__nu-YY34eSr9xx-ltRfW25W-lNLJ"
-                alt="Trailer thumbnail"
-                fill
-                sizes="100vw"
-                className="object-cover opacity-70"
+            <div className="relative aspect-video w-full border border-divider overflow-hidden bg-black">
+              <iframe
+                className="h-full w-full"
+                src="https://www.youtube.com/embed/DXmNBhsm62M"
+                title="Trailer"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
               />
-              <button
-                type="button"
-                aria-label="Play trailer"
-                className="absolute inset-0 m-auto w-20 h-20 border border-secondary flex items-center justify-center text-secondary bg-background/40"
-              >
-                <PlayCircle className="h-10 w-10" />
-              </button>
             </div>
           </Reveal>
           <Reveal delayMs={150}>
@@ -144,7 +149,7 @@ export default function FilmPage() {
               Experience the Legacy
             </h2>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {accessOptions.map((option, index) => (
               <Reveal key={option.title} delayMs={index * 150}>
                 <div className="bg-surface-container border border-divider p-10 h-full flex flex-col gap-6">
@@ -262,13 +267,15 @@ export default function FilmPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
             {[
               ["Executive Producer", "John C. Shin"],
-              ["Director", "Scott Robertson"],
-              ["Cinematography", "Elias Martinez"],
-              ["Composer", "Sarah Sterling"],
-              ["Featuring", "Bob Proctor"],
-              ["Featuring", "Barbara Corcoran"],
-              ["Featuring", "Grant Cardone"],
-              ["Featuring", "Rob Dyrdek"],
+              ["Director and Writer", "Scott Cervine"],
+              ["Writer", "Cynthia Whitcomb"],
+              ["Featuring", "Joel Brown"],
+              ["Featuring", "Nneoma Sampson"],
+              ["Featuring", "Justin Snowball"],
+              ["Contributor", "Barbara Corcoran"],
+              ["Contributor", "Grant Cardone"],
+              ["Contributor", "Darren Hardy"],
+              ["Contributor", "Lewis Howes"],
             ].map(([role, name]) => (
               <div key={name}>
                 <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-2">
@@ -321,7 +328,6 @@ export default function FilmPage() {
           </div>
         </Container>
       </section>
-
     </div>
   );
 }

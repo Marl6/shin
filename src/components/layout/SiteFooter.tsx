@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowUp } from "lucide-react";
 
 import BackToTopButton from "@/components/ui/BackToTopButton";
 import Container from "@/components/layout/Container";
@@ -30,10 +31,7 @@ export default function SiteFooter() {
           >
             John C. Shin
           </Link>
-          <p className="font-body text-[16px] text-on-surface-variant max-w-sm">
-            A platform dedicated to exploring the intersection of professional
-            excellence and personal legacy.
-          </p>
+          <p className="font-body text-[16px] text-on-surface-variant max-w-sm"></p>
         </div>
         <div className="md:col-span-3">
           <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
@@ -87,10 +85,11 @@ export default function SiteFooter() {
         </div>
         <div className="md:col-span-12 mt-10 pt-6 border-t border-divider flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant opacity-70">
-            (c) 2024 John C. Shin. All rights reserved.
+            Ⓒ {new Date().getFullYear()} John C. Shin. All rights reserved.
           </p>
-          <BackToTopButton className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant hover:text-secondary">
+          <BackToTopButton className="flex items-center gap-2 font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant hover:text-secondary">
             Back to Top
+            <ArrowUp className="h-3 w-3" aria-hidden="true" />
           </BackToTopButton>
         </div>
       </Container>

@@ -8,6 +8,7 @@ import { buttonStyles } from "@/components/ui/Button";
 import ChapterAccordion from "@/components/ui/ChapterAccordion";
 import Reveal from "@/components/ui/Reveal";
 import Stars from "@/components/ui/Stars";
+import { cloudinaryUrl } from "@/lib/cloudinary";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -47,21 +48,21 @@ const chapterItems = [
 const reviewCards = [
   {
     quote:
-      "This is not just a book on finance; it is a cultural study on success that changed my business.",
-    name: "Robert T.",
-    title: "Author and Investor",
+      "I couldn't put this book down! It's filled with amazing tips about success and mindset.",
+    name: "Vicky V.",
+    title: "Amazon reviewer",
   },
   {
     quote:
-      "Every chapter contains a strategy that can be applied immediately to executive decision-making.",
-    name: "Erica L.",
-    title: "Venture Capitalist",
+      "There is one risk in reading this book: your mind might never be the same. You just might find yourself thinking and growing rich.",
+    name: "Calen P.",
+    title: "Amazon reviewer",
   },
   {
     quote:
-      "A masterclass in generational thinking. This is the manual I will pass to my children.",
-    name: "Marcus W.",
-    title: "CEO, Wealth Global",
+      "Really helps bring out the practical advice by using interviews of real people who have become successful in modern times.",
+    name: "Reginald H.",
+    title: "Amazon reviewer",
   },
 ];
 
@@ -75,7 +76,7 @@ export default function BookPage() {
               <div className="flex items-center gap-4 mb-6">
                 <Stars rating={5} />
                 <span className="font-ui text-[12px] uppercase tracking-[0.2em] text-on-surface-variant">
-                  4.9 / 5 Rating
+                  4.8 / 5 Rating on Amazon
                 </span>
               </div>
               <h1 className="font-display text-[40px] md:text-[64px] leading-tight text-on-surface mb-8">
@@ -104,22 +105,50 @@ export default function BookPage() {
             <Reveal className="lg:col-span-6 flex justify-center" delayMs={150}>
               <div className="relative w-72 md:w-96 aspect-[2/3] border border-divider overflow-hidden">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyxlGshZW6JqB_XM6uepq_EosLsCDQniCltOcqdo6dQNGRFbwnC7GRZsYgEox3X1h0HKzhcZtSQ-rCil66y6klNNA6TBWikMaciTKF-bWGcYa2ocmJRLOg-vijRjB9n6STM95RFvibbJdG19o9aLwAkrb__-Fl6GBCAk27-UYMqgC0DuhnYqcXvNOjnO4wnWkGiAvMMcBchs7HyQUiP1LeALBkR4QMcaE-A0HkgprOmQzFVwa3wA_QgILXWh9GnPn7Mz0MOY2cU4mq"
+                  src={cloudinaryUrl("book/portrait")}
                   alt="How Rich Asians Think book cover"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
                   className="object-cover"
                 />
-                <div className="absolute -bottom-6 -right-6 bg-surface-container-high border border-divider p-4">
+                {/*
+                <div className="absolute -bottom-2 -right-2 bg-surface-container-high border border-divider p-4">
                   <p className="font-ui text-[12px] uppercase tracking-[0.2em] text-secondary mb-1">
-                    Bestseller
+                    Bestselling Book
                   </p>
                   <p className="font-display text-[22px] text-on-surface">
                     #1 Global
                   </p>
                 </div>
+                */}
               </div>
             </Reveal>
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-24 md:py-32">
+        <Container>
+          <Reveal className="text-center mb-16">
+            <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
+              Special Thanks To
+            </p>
+          </Reveal>
+          <div className="grid grid-cols-3 md:grid-cols-3 gap-10 text-center">
+            {[
+              ["Book Contributor", "The Rock"],
+              ["Book Contributor", "Vera Wang"],
+              ["Book Contributor", "Steve Aoki"],
+            ].map(([role, name]) => (
+              <div key={name}>
+                <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mb-2">
+                  {role}
+                </p>
+                <p className="font-display text-[18px] text-on-surface">
+                  {name}
+                </p>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
@@ -137,8 +166,8 @@ export default function BookPage() {
               Choose your preferred way to read.
             </p>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-1 gap-8 max-w-4xl mx-auto">
+            {/* <Reveal>
               <div className="bg-surface-container-low border border-secondary p-10 text-center">
                 <Star className="h-8 w-8 text-secondary mx-auto mb-6" />
                 <h3 className="font-display text-[24px] text-on-surface mb-2">
@@ -177,7 +206,7 @@ export default function BookPage() {
                   Order Now - Get Autographed Copy
                 </button>
               </div>
-            </Reveal>
+            </Reveal> */}
             <Reveal delayMs={150}>
               <div className="bg-surface-container-low border border-divider p-10 text-center">
                 <ShoppingCart className="h-8 w-8 text-on-surface-variant mx-auto mb-6" />
@@ -189,14 +218,14 @@ export default function BookPage() {
                 </p>
                 <div className="mb-8">
                   <span className="font-display text-[24px] text-on-surface">
-                    $24.95
+                    $27.95
                   </span>
                 </div>
                 <ul className="text-left font-body text-[16px] text-on-surface-variant mb-8 space-y-3">
                   {[
-                    "Prime one-day delivery",
+                    "Refund/Replacement policy",
                     "Kindle and Audible options",
-                    "Paperback or hardcover",
+                    "Hardcover",
                   ].map((item) => (
                     <li key={item} className="flex items-center gap-2">
                       <Check className="h-4 w-4 text-on-surface-variant" />
@@ -205,7 +234,7 @@ export default function BookPage() {
                   ))}
                 </ul>
                 <Link
-                  href="https://amazon.com"
+                  href="https://www.amazon.com/How-Rich-Asians-Think-Publication/dp/1640951237"
                   target="_blank"
                   rel="noreferrer"
                   className={buttonStyles({
@@ -227,7 +256,7 @@ export default function BookPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <Reveal className="lg:col-span-5">
               <h2 className="font-display text-[28px] md:text-[32px] text-on-surface mb-6">
-                What You Will Master
+                Napoleon Hill&apos;s Timeless Principles Re-envisioned
               </h2>
               <p className="font-body text-[18px] text-on-surface-variant mb-10">
                 More than a business book, this is an architectural blueprint
@@ -252,8 +281,8 @@ export default function BookPage() {
                   },
                 ].map((item) => (
                   <div key={item.title} className="flex gap-6">
-                    <div className="w-12 h-12 border border-divider flex items-center justify-center text-secondary">
-                      <Download className="h-5 w-5" />
+                    <div className="w-10 h-8 border border-divider flex items-center justify-center text-secondary">
+                      <Check className="h-5 w-5 text-secondary absolute" />
                     </div>
                     <div>
                       <h4 className="font-ui text-[12px] uppercase tracking-[0.2em] text-on-surface mb-2">
@@ -270,7 +299,7 @@ export default function BookPage() {
             <Reveal className="lg:col-span-7" delayMs={150}>
               <div className="relative h-[420px] border border-divider overflow-hidden">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuADAJK9cTUTEbaQ7Hwu7tJOvdxONCAGyzkn-qnt_vvqHz5XO6Q_f-ZNwrMS06CB7J-CZiLVtMH-5ShFtmIZhVDtalXzSCQJeotxiW4Gw--LpSDgtGzzhI9tJxjMWJxPgF9woFIXsSYXr7V0la4romkW4qFwv65pE6409BWVL3hG8tv2mIxY1IyD00HhqS3KCu4lu5n-a7XZJPt8oedo5rlM5DONRYJ3L9Hj0EVTptTgeWFkxJzecm-9fvPrZTpRIzoaQYEhvW_Q03Zr"
+                  src={cloudinaryUrl("napoleonhill/logo")}
                   alt="Executive skyline at golden hour"
                   fill
                   sizes="(max-width: 768px) 100vw, 60vw"
@@ -312,7 +341,7 @@ export default function BookPage() {
                 <div className="bg-surface-container-low border border-divider p-8 h-full">
                   <Stars rating={5} className="mb-6" />
                   <p className="font-body text-[16px] italic text-on-surface mb-8">
-                    "{review.quote}"
+                    &quot;{review.quote}&quot;
                   </p>
                   <p className="font-ui text-[12px] uppercase tracking-[0.2em] text-on-surface">
                     {review.name}
@@ -327,6 +356,7 @@ export default function BookPage() {
         </Container>
       </section>
 
+      {/*
       <section className="py-24 md:py-32 bg-secondary text-on-secondary">
         <Container>
           <Reveal className="text-center">
@@ -356,7 +386,7 @@ export default function BookPage() {
           </Reveal>
         </Container>
       </section>
-
+      */}
     </div>
   );
 }

@@ -10,11 +10,14 @@ import {
   Play,
   Quote,
   Video,
+  ChevronDown,
+  Check,
 } from "lucide-react";
-
+import * as Select from "@radix-ui/react-select";
 import Container from "@/components/layout/Container";
 import { buttonStyles } from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import SpeakingForm from "@/components/ui/Form";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -25,43 +28,42 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function SpeakingPage() {
+  const now = new Date();
+  const currentYear = now.getFullYear();
+  const currentMonth = now.getMonth();
+  const currentQuarter = Math.floor(currentMonth / 3) + 1;
+  const remainingQuarters = Array.from(
+    { length: 4 - currentQuarter + 1 },
+    (_, i) => `Q${currentQuarter + i}`,
+  );
   return (
     <div id="speaking" className="bg-background text-on-surface scroll-mt-32">
       <section className="py-24 md:py-32">
         <Container>
           <Reveal className="text-center max-w-4xl mx-auto mb-16">
             <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
-              World-Class Keynote Speaker
+              World Class Speaker
             </p>
             <h1 className="font-display text-[40px] md:text-[64px] text-on-surface mb-6">
-              Architecting the Unthinkable.
+              Talk to Inspire.
             </h1>
             <p className="font-body text-[18px] text-on-surface-variant">
-              John C. Shin delivers high-impact narratives on leadership,
-              executive mindset, and the mechanics of modern empire building.
+              John Shin delivers high-impact narratives on leadership, executive
+              mindset, and the mechanics of modern empire building.
             </p>
           </Reveal>
           <Reveal>
             <div className="relative aspect-video border border-divider overflow-hidden">
-              <Image
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqRCS52MWIlZCpfop4xLq2XChDqp8iMGEZuJy3o_-RksnLKPmTh3KpgH5zaJRLfMMaEslzCc4pPuyLQThLZnHbmvcGd4jZ-eiDSQ2EAPCa2tleSK2ymfGlqX8p_3epUbeusi5MeTATkTxVGzBuVQTmQocd8npQ84CsWFoWjbWIFKPdmbWRvaD3IH7SXfUi2ab78tDAt3qXca0DQymVgTBaBMKwEhG64u23C9bLrZSPdzGwAdXskFqzmdgyra77TPc0g-nfukLBdAdW"
-                alt="Keynote speaker on stage"
-                fill
-                sizes="100vw"
-                className="object-cover grayscale"
+              <iframe
+                src="https://www.youtube.com/embed/l2KsV61qn8s"
+                title="Official Speaking Reel 2024"
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
               />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <button
-                  type="button"
-                  aria-label="Play speaking reel"
-                  className="w-20 h-20 border border-secondary flex items-center justify-center text-secondary bg-background/40"
-                >
-                  <Play className="h-10 w-10" />
-                </button>
-              </div>
               <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-background to-transparent">
                 <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-on-surface">
-                  Official Speaking Reel 2024
+                  John Shin at the MGM Grand Arena Convention 2015
                 </p>
               </div>
             </div>
@@ -71,14 +73,15 @@ export default function SpeakingPage() {
 
       <section className="border-y border-divider bg-surface-container-lowest py-10">
         <Container>
-          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-col md:flex-row justify-center items-center gap-6">
             <div className="flex items-center gap-4">
               <span className="w-3 h-3 border border-secondary" />
               <p className="font-ui text-[12px] uppercase tracking-[0.3em]">
-                Now Booking for Q3 and Q4 2024
+                Now Booking for {remainingQuarters.join(", ")} of {currentYear}
               </p>
+              <span className="w-3 h-3 border border-secondary" />
             </div>
-            <div className="flex gap-8">
+            {/* <div className="flex gap-8">
               <div className="flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-secondary" />
                 <span className="font-body text-[16px] text-on-surface-variant">
@@ -91,12 +94,12 @@ export default function SpeakingPage() {
                   Virtual Summits
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </Container>
       </section>
 
-      <section className="py-24 md:py-32">
+      {/* <section className="py-24 md:py-32">
         <Container>
           <Reveal className="mb-12">
             <h2 className="font-display text-[28px] md:text-[32px] text-on-surface border-l-4 border-secondary pl-4">
@@ -190,7 +193,7 @@ export default function SpeakingPage() {
             </Reveal>
           </div>
         </Container>
-      </section>
+      </section> */}
 
       <section className="py-24 md:py-32 bg-surface-container-lowest">
         <Container>
@@ -205,30 +208,33 @@ export default function SpeakingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
             {[
               {
-                quote:
-                  "John's ability to command a room of 5,000 executives is unparalleled.",
+                quote: "Lorem Ipsum Dolor.1",
+                name: "John Doe",
+                position: "Executive Director",
               },
               {
-                quote:
-                  "Intellectually rigorous and practically applicable. Our partners still discuss his frameworks months later.",
+                quote: "Lorem Ipsum Dolor.2",
+                name: "Jane Smith",
+                position: "Chief Marketing Officer",
               },
               {
-                quote:
-                  "The perfect blend of editorial storytelling and hard-hitting business strategy.",
+                quote: "Lorem Ipsum Dolor.3",
+                name: "Bob Johnson",
+                position: "Chief Financial Officer",
               },
             ].map((item, index) => (
               <Reveal key={item.quote} delayMs={index * 150}>
                 <div className="flex flex-col gap-6">
                   <Quote className="h-10 w-10 text-secondary" />
                   <p className="font-body text-[18px] italic text-on-surface">
-                    "{item.quote}"
+                    &quot;{item.quote}&quot;
                   </p>
                   <div>
                     <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-on-surface">
-                      Executive Partner
+                      {item.name}
                     </p>
                     <p className="font-body text-[14px] text-on-surface-variant">
-                      Global Leadership Summit
+                      {item.position}
                     </p>
                   </div>
                 </div>
@@ -238,7 +244,7 @@ export default function SpeakingPage() {
         </Container>
       </section>
 
-      <section className="py-16">
+      {/* <section className="py-16">
         <Container>
           <div className="flex flex-wrap justify-center md:justify-between items-center gap-6 text-on-surface-variant text-[10px] uppercase tracking-[0.3em]">
             {["Forbes", "TEDx", "Goldman", "Harvard", "Bloomberg"].map(
@@ -253,7 +259,7 @@ export default function SpeakingPage() {
             )}
           </div>
         </Container>
-      </section>
+      </section> */}
 
       <section id="booking" className="py-24 md:py-32">
         <Container>
@@ -273,109 +279,25 @@ export default function SpeakingPage() {
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-secondary" />
                   <span className="font-body text-[16px] text-on-surface">
-                    speaking@johncshin.com
+                    email@test.com
                   </span>
                 </div>
                 <div className="flex items-center gap-3">
                   <Phone className="h-4 w-4 text-secondary" />
                   <span className="font-body text-[16px] text-on-surface">
-                    +1 (555) 890-4422
+                    +11111
                   </span>
                 </div>
               </div>
             </Reveal>
             <Reveal className="md:col-span-7" delayMs={150}>
               <div className="bg-surface-container border border-divider p-8 md:p-12">
-                <form className="space-y-10">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
-                      <label
-                        htmlFor="speaking-name"
-                        className="font-ui text-[10px] uppercase tracking-[0.2em] text-on-surface-variant block mb-2"
-                      >
-                        Full Name
-                      </label>
-                      <input
-                        id="speaking-name"
-                        className="w-full bg-transparent border-0 border-b border-divider focus:border-secondary focus:ring-0 py-2"
-                        placeholder="Alex Vance"
-                        type="text"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="speaking-email"
-                        className="font-ui text-[10px] uppercase tracking-[0.2em] text-on-surface-variant block mb-2"
-                      >
-                        Email Address
-                      </label>
-                      <input
-                        id="speaking-email"
-                        className="w-full bg-transparent border-0 border-b border-divider focus:border-secondary focus:ring-0 py-2"
-                        placeholder="alex@company.com"
-                        type="email"
-                      />
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
-                      <label
-                        htmlFor="speaking-date"
-                        className="font-ui text-[10px] uppercase tracking-[0.2em] text-on-surface-variant block mb-2"
-                      >
-                        Event Date
-                      </label>
-                      <input
-                        id="speaking-date"
-                        className="w-full bg-transparent border-0 border-b border-divider focus:border-secondary focus:ring-0 py-2"
-                        placeholder="MM / DD / YYYY"
-                        type="text"
-                      />
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="speaking-budget"
-                        className="font-ui text-[10px] uppercase tracking-[0.2em] text-on-surface-variant block mb-2"
-                      >
-                        Budget Range
-                      </label>
-                      <select
-                        id="speaking-budget"
-                        className="w-full bg-transparent border-0 border-b border-divider focus:border-secondary focus:ring-0 py-2"
-                      >
-                        <option value="">Select Range</option>
-                        <option value="25-50">$25k - $50k</option>
-                        <option value="50-100">$50k - $100k</option>
-                        <option value="100">$100k+</option>
-                      </select>
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="speaking-details"
-                      className="font-ui text-[10px] uppercase tracking-[0.2em] text-on-surface-variant block mb-2"
-                    >
-                      Event Details
-                    </label>
-                    <textarea
-                      id="speaking-details"
-                      rows={4}
-                      className="w-full bg-transparent border-0 border-b border-divider focus:border-secondary focus:ring-0 py-2"
-                      placeholder="Tell us about the audience and objectives"
-                    />
-                  </div>
-                  <button
-                    className={buttonStyles({ variant: "outline", size: "lg" })}
-                  >
-                    Submit Inquiry
-                  </button>
-                </form>
+                <SpeakingForm />
               </div>
             </Reveal>
           </div>
         </Container>
       </section>
-
     </div>
   );
 }

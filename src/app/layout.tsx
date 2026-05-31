@@ -27,6 +27,10 @@ export const metadata: Metadata = {
   title: "John C. Shin",
   description:
     "Official portfolio of Sir John C. Shin, author, entrepreneur, executive producer, and philanthropist.",
+  icons: {
+    icon: "/johnshinlogo.png",
+    apple: "/johnshinlogo.png",
+  },
 };
 
 export default function RootLayout({

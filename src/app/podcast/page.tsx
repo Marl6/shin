@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Download, PlayCircle, Share2 } from "lucide-react";
-
+import { PlayCircle } from "lucide-react";
+import {
+  getLatestYouTubeVideo,
+  get3RecentYouTubeEpisodes,
+} from "@/lib/services";
 import Container from "@/components/layout/Container";
 import { buttonStyles } from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
+import YoutubePlayerModal from "@/components/ui/YoutubePlayerModal";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -45,7 +49,16 @@ const episodes = [
   },
 ];
 
-export default function PodcastPage() {
+export default async function PodcastPage() {
+  const [latestVideo, recentEpisodes] = await Promise.all([
+    getLatestYouTubeVideo(),
+    get3RecentYouTubeEpisodes(),
+  ]);
+
+  const latestVideoTitle = latestVideo?.title ?? "Latest Video";
+  const latestVideoThumbnail = latestVideo?.thumbnail ?? null;
+  const latestVideoId = latestVideo?.videoId ?? null;
+  const recent3Episode = recentEpisodes;
   return (
     <div id="podcast" className="bg-background text-on-surface scroll-mt-32">
       <section className="py-24 md:py-32">
@@ -56,7 +69,7 @@ export default function PodcastPage() {
                 Featured Episode
               </p>
               <h1 className="font-display text-[40px] md:text-[64px] text-on-surface mb-8">
-                The John Shin Show
+                The John Shin TV
               </h1>
               <p className="font-body text-[18px] text-on-surface-variant mb-10 max-w-lg">
                 Real conversations on wealth, mindset, and legacy. Dive into the
@@ -64,39 +77,36 @@ export default function PodcastPage() {
               </p>
               <div className="flex flex-wrap gap-8 items-center">
                 <div className="flex items-center gap-4">
-                  <PlayCircle className="h-10 w-10 text-secondary" />
+                  {latestVideoId && (
+                    <YoutubePlayerModal videoId={latestVideoId} />
+                  )}
                   <div>
                     <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant">
-                      Now Playing
+                      Recent Episode
                     </p>
                     <p className="font-display text-[20px] text-on-surface">
-                      EP. 142: The 1 Percent Mindset Shift
+                      {latestVideoTitle}
                     </p>
                   </div>
-                </div>
-                <div className="hidden md:block h-10 w-px bg-divider" />
-                <div className="flex gap-4">
-                  <Share2 className="h-5 w-5 text-on-surface-variant hover:text-secondary" />
-                  <Download className="h-5 w-5 text-on-surface-variant hover:text-secondary" />
                 </div>
               </div>
             </Reveal>
             <Reveal className="md:col-span-6" delayMs={150}>
               <div className="relative aspect-square border border-divider overflow-hidden">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDoF-M5IrBdisyHwrM2dlS9CKKky4rMXLODTR7eELbjCUJrfjKOCd9OPfQYgeZRvhK4Y1L0ALLKyXQ_qnP7jGIUKwH8G3FiLYCyNCkWkrfERqskgZzuLzekYAd3om0l7Kq-KLgdp4aiNsVm4iD64ae1TPqZTiBAltvzprPYN6OaiEeRqtpU9So1LUimOgKB26ccRtqguiC3ZXb2vr3iIYNOlTbj01cjDVjmMaErD1wpqr-WOTY6ze5LgKWIJwkt0gLA-wW3H4fqHVPD"
+                  src={
+                    latestVideoThumbnail ??
+                    "https://lh3.googleusercontent.com/aida-public/AB6AXuDoF-M5IrBdisyHwrM2dlS9CKKky4rMXLODTR7eELbjCUJrfjKOCd9OPfQYgeZRvhK4Y1L0ALLKyXQ_qnP7jGIUKwH8G3FiLYCyNCkWkrfERqskgZzuLzekYAd3om0l7Kq-KLgdp4aiNsVm4iD64ae1TPqZTiBAltvzprPYN6OaiEeRqtpU9So1LUimOgKB26ccRtqguiC3ZXb2vr3iIYNOlTbj01cjDVjmMaErD1wpqr-WOTY6ze5LgKWIJwkt0gLA-wW3H4fqHVPD"
+                  }
                   alt="Executive podcast studio"
                   fill
                   sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover grayscale"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 border border-secondary/20 m-6" />
-                <div className="absolute bottom-8 right-8 bg-surface/90 border border-divider p-4">
-                  <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-1">
-                    Guest
-                  </p>
-                  <p className="font-display text-[18px] text-on-surface">
-                    Dr. Ray Dalio
+                <div className="absolute bottom-8 right-8 bg-surface/90 border border-divider p-3">
+                  <p className="font-ui text-[18px] uppercase tracking-[0.3em] text-secondary mb-1">
+                    Weekly new episode!
                   </p>
                 </div>
               </div>
@@ -113,15 +123,11 @@ export default function PodcastPage() {
                 Listen On
               </span>
               <div className="flex flex-wrap gap-8">
-                {[
-                  "Apple Podcasts",
-                  "Spotify",
-                  "YouTube",
-                  "Google Podcasts",
-                ].map((platform) => (
+                {["Youtube"].map((platform) => (
                   <Link
                     key={platform}
-                    href="#"
+                    href="https://youtube.com/@johnshinofficial?si=sMHmG27GFC3FYasI"
+                    target="_blank"
                     className="font-ui text-[12px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-on-surface"
                   >
                     {platform}
@@ -146,7 +152,8 @@ export default function PodcastPage() {
             </Reveal>
             <Reveal delayMs={150}>
               <Link
-                href="#"
+                href="https://youtube.com/@johnshinofficial?si=sMHmG27GFC3FYasI"
+                target="_blank"
                 className="font-ui text-[12px] uppercase tracking-[0.2em] text-on-surface-variant hover:text-secondary"
               >
                 View All Episodes
@@ -154,12 +161,12 @@ export default function PodcastPage() {
             </Reveal>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {episodes.map((episode, index) => (
-              <Reveal key={episode.id} delayMs={index * 150}>
+            {recent3Episode.map((episode, index: number) => (
+              <Reveal key={episode.videoId} delayMs={index * 150}>
                 <div className="group cursor-pointer">
                   <div className="relative aspect-video border border-divider overflow-hidden mb-6">
                     <Image
-                      src={episode.image}
+                      src={episode.thumbnail ?? ""}
                       alt={episode.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -169,14 +176,16 @@ export default function PodcastPage() {
                   </div>
                   <div className="flex justify-between items-start mb-4">
                     <span className="font-ui text-[10px] uppercase tracking-[0.3em] text-secondary">
-                      EP. {episode.id} - {episode.duration}
+                      {episode.title}
                     </span>
-                    <PlayCircle className="h-5 w-5 text-on-surface-variant" />
+                    {episode.videoId && (
+                      <YoutubePlayerModal videoId={episode.videoId} />
+                    )}
                   </div>
                   <h3 className="font-display text-[20px] text-on-surface group-hover:text-secondary mb-3">
                     {episode.title}
                   </h3>
-                  <p className="font-body text-[16px] text-on-surface-variant">
+                  <p className="font-body text-[16px] text-on-surface-variant line-clamp-2">
                     {episode.description}
                   </p>
                 </div>
@@ -190,17 +199,15 @@ export default function PodcastPage() {
         <Container>
           <Reveal className="text-center max-w-3xl mx-auto">
             <span className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-6 block">
-              Guest Highlight
+              Podcast Highlight
             </span>
             <blockquote className="font-display text-[28px] md:text-[32px] italic text-on-surface mb-10">
-              "Success is not about what you accomplish in your life; it is
-              about what you inspire others to do. Legacy is the only currency
-              that transcends time."
+              &quot;Lorem Ipsum Dolor Sit Amet.&quot;
             </blockquote>
             <div className="flex flex-col items-center">
               <div className="relative w-20 h-20 border border-divider overflow-hidden mb-4">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC_1oYZ-0RDP6bn35jScgryX2xu6y7PykrJncTssBGiFe9QvaWhWpTdNsG8K9RNoiJdW2x2XGyKUhzFq3-5dnQ-_TgoCqoh4VWi7KandDEHdZ1jIS9HwxDlaoXJvSGe2JFK7MkApVV4ZpiylvNXMpmht2ZqpnR_9Leno99cnmvsT6vHNa0hT4AZpaQeAURzPA0VuS2tuZtUnI3D6M1NnHkTJL2grPZ1JP7q8T-n-YKeQbYKeo0u3AT7YVsQOOmyqNUdDXWVd_9FrlU"
+                  src="/images/avatar-placeholder.svg"
                   alt="Guest portrait"
                   fill
                   sizes="80px"
@@ -208,7 +215,7 @@ export default function PodcastPage() {
                 />
               </div>
               <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-on-surface">
-                Dr. Ray Dalio
+                Dr. Anon Anon
               </p>
               <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mt-1">
                 Episode 142 Guest
@@ -218,7 +225,7 @@ export default function PodcastPage() {
         </Container>
       </section>
 
-      <section className="py-24 md:py-32">
+      {/* <section className="py-24 md:py-32">
         <Container>
           <Reveal>
             <div className="border border-divider bg-surface p-10 md:p-16 relative overflow-hidden">
@@ -309,8 +316,7 @@ export default function PodcastPage() {
             </div>
           </Reveal>
         </Container>
-      </section>
-
+      </section> */}
     </div>
   );
 }
