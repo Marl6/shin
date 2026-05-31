@@ -36,7 +36,7 @@ export default function HomePage() {
               alt="John Shin - Seat"
               fill
               sizes="100vw"
-              className="object-cover grayscale opacity-40"
+              className="object-cover grayscale opacity-40 scale-75 origin-top"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/70" />
