@@ -8,6 +8,7 @@ import { buttonStyles } from "@/components/ui/Button";
 import IconCard from "@/components/ui/IconCard";
 import QuoteRotator from "@/components/ui/QuoteRotator";
 import Reveal from "@/components/ui/Reveal";
+import { cloudinaryUrl } from "@/lib/cloudinary";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -94,7 +95,10 @@ export default function AboutPage() {
             <Reveal className="md:col-span-5" delayMs={150}>
               <div className="relative aspect-[4/5] border border-divider overflow-hidden">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjXOmjKDHhuxnk2s5E5RnkdhtSRMkA6tMOA0TxS1G6cFJz63ccriPUXlRduQA1PVgxMwDE7h9QAp_Kh9RuUlr7ucZRQj71lCcPAt7n2qrYN8lQ_mUIcTlv6YftSKvepO-3Xyhb_Z_1sdJohxy8_qRZSZZifpBjfUnWav_qVpsyyED4EYMj00qCvb8eNU0508wLi57Q4Nnszz3tgT9JwE1m01xYbT-4ElAavFefFHz0Af-rNQVVRkloljM4r6AtNjG6q7KBiF_j7MmJ"
+                  src={cloudinaryUrl(
+                    "self-portrait/portrait",
+                    "h_1600,q_auto,f_auto",
+                  )}
                   alt="Portrait of Sir John C. Shin"
                   fill
                   sizes="(max-width: 768px) 100vw, 40vw"
