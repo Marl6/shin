@@ -15,14 +15,15 @@ export default function SiteNav() {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
-  const isHome = pathname === "/";
+
+  const [isHome] = useState(pathname === "/");
+
   const activeSectionRef = useRef<string | null>(null);
 
   useEffect(() => {
     activeSectionRef.current = activeSection;
   }, [activeSection]);
 
-  // Scroll shadow
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 24);
     onScroll();
@@ -30,7 +31,6 @@ export default function SiteNav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Active section tracking
   useEffect(() => {
     if (!isHome) return;
 
@@ -40,9 +40,6 @@ export default function SiteNav() {
 
     if (sectionIds.length === 0) return;
 
-    // How far from the top of the viewport a section must be to be "active".
-    // Using 40% of the viewport height feels natural — the section is well
-    // past the nav but hasn't fully left the screen yet.
     const ACTIVATION_THRESHOLD = () => window.innerHeight * 0.4;
 
     const updateActiveSection = () => {
@@ -51,7 +48,6 @@ export default function SiteNav() {
       for (const id of sectionIds) {
         const el = document.getElementById(id);
         if (!el) continue;
-        // getBoundingClientRect().top is relative to the viewport
         if (el.getBoundingClientRect().top <= ACTIVATION_THRESHOLD()) {
           current = id;
         }
@@ -59,37 +55,34 @@ export default function SiteNav() {
 
       if (current !== activeSectionRef.current) {
         setActiveSection(current);
+        activeSectionRef.current = current; // sync ref immediately
+        const cleanPath = current === "home" ? "/" : `/${current}`;
+        window.history.replaceState(null, "", cleanPath);
       }
     };
 
-    // Honour a hash in the URL on first load
-    const hash = window.location.hash.replace("#", "");
-    if (hash && sectionIds.includes(hash)) {
-      setActiveSection(hash);
-    } else {
-      updateActiveSection();
-    }
+    updateActiveSection();
 
     window.addEventListener("scroll", updateActiveSection, { passive: true });
-
-    const onHashChange = () => {
-      const nextHash = window.location.hash.replace("#", "");
-      if (nextHash && sectionIds.includes(nextHash)) {
-        setActiveSection(nextHash);
-      }
-    };
-    window.addEventListener("hashchange", onHashChange);
-
-    return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("hashchange", onHashChange);
-    };
+    return () => window.removeEventListener("scroll", updateActiveSection);
   }, [isHome]);
 
-  const getNavHref = (href: string, pageHref?: string) =>
-    isHome ? href : (pageHref ?? href);
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    sectionId?: string,
+  ) => {
+    if (!isHome || !sectionId) return;
 
-  const bookHref = isHome ? "/#book" : "/book";
+    e.preventDefault();
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+      const cleanPath = sectionId === "home" ? "/" : `/${sectionId}`;
+      window.history.pushState(null, "", cleanPath);
+      setActiveSection(sectionId);
+      activeSectionRef.current = sectionId;
+    }
+  };
 
   return (
     <nav
@@ -101,10 +94,13 @@ export default function SiteNav() {
       <Container className="flex items-center justify-between">
         <Link
           href="/"
+          onClick={(e) => handleNavClick(e, "home")}
           className="font-display text-[22px] md:text-[28px] tracking-tight text-on-surface"
         >
-          John C. Shin
+          John Shin
         </Link>
+
+        {/* Desktop */}
         <div className="hidden xl:flex items-center gap-8">
           {navItems.map((item) => {
             const isActive = isHome
@@ -113,7 +109,8 @@ export default function SiteNav() {
             return (
               <Link
                 key={item.href}
-                href={getNavHref(item.href, item.pageHref)}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.sectionId)}
                 className={cn(
                   "font-ui text-[12px] uppercase tracking-[0.2em] text-on-surface-variant transition-colors",
                   isActive
@@ -126,14 +123,18 @@ export default function SiteNav() {
             );
           })}
         </div>
+
         <div className="hidden xl:flex">
           <Link
-            href={bookHref}
+            href="/book"
+            onClick={(e) => handleNavClick(e, "book")}
             className={buttonStyles({ variant: "outline" })}
           >
             Buy the Book
           </Link>
         </div>
+
+        {/* Mobile */}
         <Dialog.Root>
           <Dialog.Trigger asChild>
             <button
@@ -148,9 +149,9 @@ export default function SiteNav() {
             <Dialog.Overlay className="fixed inset-0 bg-black/70" />
             <Dialog.Content className="fixed right-0 top-0 h-full w-full max-w-sm bg-background border-l border-divider p-8 flex flex-col gap-8">
               <div className="flex items-center justify-between">
-                <span className="font-display text-[22px] text-on-surface">
+                <Dialog.Title className="font-display text-[22px] text-on-surface">
                   Navigation
-                </span>
+                </Dialog.Title>
                 <Dialog.Close asChild>
                   <button type="button" aria-label="Close navigation">
                     <X className="h-6 w-6 text-on-surface" />
@@ -165,7 +166,8 @@ export default function SiteNav() {
                   return (
                     <Dialog.Close asChild key={item.href}>
                       <Link
-                        href={getNavHref(item.href, item.pageHref)}
+                        href={item.href}
+                        onClick={(e) => handleNavClick(e, item.sectionId)}
                         className={cn(
                           "font-ui text-[12px] uppercase tracking-[0.2em] text-on-surface-variant transition-colors",
                           isActive ? "text-secondary" : "hover:text-on-surface",
@@ -179,7 +181,8 @@ export default function SiteNav() {
               </div>
               <Dialog.Close asChild>
                 <Link
-                  href={bookHref}
+                  href="/book"
+                  onClick={(e) => handleNavClick(e, "book")}
                   className={buttonStyles({ variant: "primary" })}
                 >
                   Buy the Book

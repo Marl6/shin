@@ -15,10 +15,11 @@ import { buttonStyles } from "@/components/ui/Button";
 import IconCard from "@/components/ui/IconCard";
 import Reveal from "@/components/ui/Reveal";
 import Ticker from "@/components/ui/Ticker";
+import { cloudinaryUrl } from "@/lib/cloudinary";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "John C. Shin | From Hustle to Legacy",
+    title: "John Shin",
     description:
       "Sir John C. Shin - author, entrepreneur, executive producer, and philanthropist inspiring the next generation of leaders.",
   };
@@ -27,56 +28,53 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function HomePage() {
   return (
     <>
-      <div
-        id="home"
-        className="bg-background text-on-surface scroll-mt-32"
-      >
+      <div id="home" className="bg-background text-on-surface scroll-mt-32">
         <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
-          <Image
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQDn3X9pyexHGH17ZMyahWbdICVVRDMy1sFD4bS-M_xqsyBVH4dkV9dDtY7VxE5C9aTXj-oHay4nIr7ewUBYFPvHt7bhyFRTorSsPWnXDIx2RbY7kEmkv316gKt7yK1kMPWm4x_at49LINueTDhpY7altlSNlBjBYtYjW7c2mqzfu6LjcofidKP7I6EEFPkS_w51b4g-mQDRBXROoqicb8pEEbS8W7bq76aDHXl0V71PAECU-cPbyetz4XVmi-ZKbkA3eLfhNEdEhq"
-            alt="Cinematic portrait of Sir John C. Shin"
-            fill
-            sizes="100vw"
-            className="object-cover grayscale opacity-40"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/70" />
-        </div>
-        <Container className="relative z-10 text-center">
-          <Reveal>
-            <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
-              The Legacy Architect
-            </p>
-            <h1 className="font-display text-[40px] md:text-[64px] leading-tight text-on-surface max-w-4xl mx-auto">
-              From Hustle to Legacy - Inspiring Millions to Think and Grow Rich
-            </h1>
-          </Reveal>
-          <Reveal delayMs={200}>
-            <p className="font-body text-[18px] md:text-[20px] text-on-surface-variant max-w-2xl mx-auto mt-6">
-              Author / Entrepreneur / Executive Producer / Philanthropist
-            </p>
-          </Reveal>
-          <Reveal delayMs={400}>
-            <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-10">
-              <Link
-                href="/#book"
-                className={buttonStyles({ variant: "primary", size: "lg" })}
-              >
-                Get the Book
-              </Link>
-              <Link
-                href="/#film"
-                className={buttonStyles({ variant: "outline", size: "lg" })}
-              >
-                Watch the Film
-              </Link>
-            </div>
-          </Reveal>
-        </Container>
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-60 animate-bounce">
-          <ArrowDown className="h-6 w-6 text-on-surface" />
-        </div>
+          <div className="absolute inset-0 lg:-translate-y-20 md:-translate-y-10 -translate-y-0">
+            <Image
+              src={cloudinaryUrl("shin/seat.png", "h_1600,q_auto,f_auto")}
+              alt="John Shin - Seat"
+              fill
+              sizes="100vw"
+              className="object-cover grayscale opacity-40 lg:scale-150 md:scale-125 scale-100"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/70" />
+          </div>
+          <Container className="relative z-10 text-center">
+            <Reveal>
+              <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
+                John C. Shin
+              </p>
+              <h1 className="font-display text-[40px] md:text-[64px] leading-tight text-on-surface max-w-4xl mx-auto">
+                From Hustle to Legacy, Inspiring Millions to Think and Grow Rich
+              </h1>
+            </Reveal>
+            <Reveal delayMs={200}>
+              <p className="font-body text-[18px] md:text-[20px] text-on-surface-variant max-w-2xl mx-auto mt-6">
+                Author / Entrepreneur / Executive Producer / Philanthropist
+              </p>
+            </Reveal>
+            <Reveal delayMs={400}>
+              <div className="flex flex-col md:flex-row gap-6 justify-center items-center mt-10">
+                <Link
+                  href="/#book"
+                  className={buttonStyles({ variant: "primary", size: "lg" })}
+                >
+                  Get the Book
+                </Link>
+                <Link
+                  href="/#film"
+                  className={buttonStyles({ variant: "outline", size: "lg" })}
+                >
+                  Watch the Film
+                </Link>
+              </div>
+            </Reveal>
+          </Container>
+          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-60 animate-bounce">
+            <ArrowDown className="h-6 w-6 text-on-surface" />
+          </div>
         </section>
 
         <section className="py-12 bg-surface-container-low border-y border-divider">
@@ -132,7 +130,7 @@ export default function HomePage() {
           <Container className="text-center">
             <Reveal>
               <div className="flex justify-center mb-8">
-                <span className="text-secondary text-[48px]">"</span>
+                <span className="text-secondary text-[48px]">&quot;</span>
               </div>
               <blockquote className="font-display text-[28px] md:text-[32px] italic text-on-surface max-w-4xl mx-auto">
                 Success is not a destination, but a state of mind. To build a
