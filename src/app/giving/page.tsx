@@ -190,7 +190,7 @@ export default function GivingPage() {
                 href="https://allforone.org/donate"
                 target="_blank"
                 rel="noreferrer"
-                className={buttonStyles({ variant: "primary", size: "lg" })}
+                className={buttonStyles({ variant: "outline", size: "lg" })}
               >
                 Donate Now
               </Link>

@@ -96,7 +96,7 @@ export default function BookPage() {
                 </Link>
                 <Link
                   href="#chapters"
-                  className={buttonStyles({ variant: "ghost", size: "lg" })}
+                  className={buttonStyles({ variant: "outline", size: "lg" })}
                 >
                   Browse Chapters
                 </Link>
