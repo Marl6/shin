@@ -30,13 +30,13 @@ export default function HomePage() {
     <>
       <div id="home" className="bg-background text-on-surface scroll-mt-32">
         <section className="relative min-h-[100vh] flex items-center justify-center overflow-hidden">
-          <div className="absolute inset-0 lg:-translate-y-20 md:-translate-y-10 -translate-y-0">
+          <div className="absolute inset-0">
             <Image
               src={cloudinaryUrl("shin/seat.png", "h_1600,q_auto,f_auto")}
               alt="John Shin - Seat"
               fill
               sizes="100vw"
-              className="object-cover grayscale opacity-40 lg:scale-150 md:scale-125 scale-100"
+              className="object-cover grayscale opacity-40"
               priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/70" />

@@ -220,15 +220,15 @@ export default function AboutPage() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-14">
             <Reveal>
               <h3 className="font-display text-[28px] md:text-[32px] text-on-surface">
-                A glimpse from the past
+                Rooted in Family
               </h3>
               <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-on-surface-variant">
-                A Vignette of Leadership
+                Where Every Legacy Begins
               </p>
             </Reveal>
             <Reveal delayMs={150}>
               <Link
-                href="/#contact"
+                href="/#about"
                 className={buttonStyles({ variant: "outline" })}
               >
                 View Full Archive
@@ -239,11 +239,11 @@ export default function AboutPage() {
             <Reveal className="md:col-span-8">
               <div className="relative h-[520px] border border-divider overflow-hidden">
                 <Image
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkb4hvhoDd02hWKGSST9UT5JSVlKotjoTXUqgqh7HXKjt7A-tR24B4QcODcaxmV-ZsInejmvVgKMsJSGmCLqCw_9dzvq42Kyk_JUQ2UMMcYUzV48A8kmmGtrHdgoMvIDp4_Zm_Xg4eNZgyBhM8_JSfP-yMz4UBtwNWlaV6hIdwjP5MGp1UaLDGbUV8c3P4IqwVI6dkaZmcYFmMQHNzQ_JMaR4kAXXRmF7wNuOPvvPKhpGpL66u4-tAStUPA6nz0ZXujyIYdfoOqKkB"
-                  alt="Corporate boardroom interior"
+                  src={cloudinaryUrl("family/img1")}
+                  alt="fp1"
                   fill
                   sizes="(max-width: 768px) 100vw, 60vw"
-                  className="object-cover grayscale"
+                  className="object-cover"
                 />
               </div>
             </Reveal>
@@ -251,22 +251,22 @@ export default function AboutPage() {
               <Reveal>
                 <div className="relative h-[245px] border border-divider overflow-hidden">
                   <Image
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB78cnzBZwavjRMTAWLT9EyYiiQfwcGKRuh_-J650I3Q4iZxvXKK0E7WL2F4s7wdTTlGgMoZvZx26vPSkhIGv31y3HbIjPJMO7837AS-7aWBdSJQaPq5sHkBBVcFsVMxqy0jX3v_GQlIkkBWvqtaRRz-NbaJ3wjl2dM561nyuIvTaAosU1Eim4gp7SdHBDWZY0b-1Vqp0hugZr79_DW8OkRu-IMJgy3-vYp4RJ1p4EC3hUi-4weUV32rNPK3LByik60baNbo4j3gSZ0"
-                    alt="Executive hands reviewing strategy documents"
+                    src={cloudinaryUrl("family/img2")}
+                    alt="fp2"
                     fill
                     sizes="(max-width: 768px) 100vw, 30vw"
-                    className="object-cover grayscale"
+                    className="object-cover"
                   />
                 </div>
               </Reveal>
               <Reveal delayMs={150}>
                 <div className="relative h-[245px] border border-divider overflow-hidden">
                   <Image
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTKTlMBNDeIcgaULiJhfyHoZI5BL8Go4nb3AURED7OcZpuw3Xg0KYjXDFzSWsNGvCfyyUJDw4OlVq2xpkpL_Zgs6yb0qUh9TWEq_yW0T-ZljLuA8okPwTCybVD57Yr8UCv3KTurTBOqd62Yf4pqPv8r9CMjg2l9s2wlEQB_lQKgrtHeP0sy5YgC-0IqEIvncfIyOEu9kYOhlZrB6a_xOd3SZUopsoO4OuNf9cAm1rr3ZQwKaI3FEkaGzuqHwJhG_zboOam9CLxKyd4"
-                    alt="Modern high-rise architecture"
+                    src={cloudinaryUrl("family/img2")}
+                    alt="fp2"
                     fill
                     sizes="(max-width: 768px) 100vw, 30vw"
-                    className="object-cover grayscale"
+                    className="object-cover"
                   />
                 </div>
               </Reveal>
