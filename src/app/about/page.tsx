@@ -262,8 +262,8 @@ export default function AboutPage() {
               <Reveal delayMs={150}>
                 <div className="relative h-[245px] border border-divider overflow-hidden">
                   <Image
-                    src={cloudinaryUrl("family/img2")}
-                    alt="fp2"
+                    src={cloudinaryUrl("family/img3")}
+                    alt="fp3"
                     fill
                     sizes="(max-width: 768px) 100vw, 30vw"
                     className="object-cover"

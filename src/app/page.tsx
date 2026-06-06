@@ -166,7 +166,7 @@ export default function HomePage() {
                     <input
                       id="home-email"
                       type="email"
-                      placeholder="executive@legacy.com"
+                      placeholder="Enter your email"
                       className="w-full bg-transparent border-0 border-b border-divider py-3 text-on-surface focus:border-secondary focus:ring-0"
                     />
                   </div>

@@ -4,11 +4,25 @@ import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
+type Quote =
+  | string
+  | {
+      text: string;
+      name?: string;
+      title?: string;
+    };
+
 type QuoteRotatorProps = {
-  quotes: string[];
+  quotes: Quote[];
   className?: string;
   intervalMs?: number;
 };
+
+function resolveQuote(quote: Quote) {
+  if (typeof quote === "string")
+    return { text: quote, name: undefined, title: undefined };
+  return { text: quote.text, name: quote.name, title: quote.title };
+}
 
 export default function QuoteRotator({
   quotes,
@@ -37,15 +51,34 @@ export default function QuoteRotator({
     };
   }, [quotes.length, intervalMs]);
 
+  const { text, name, title } = resolveQuote(quotes[index]);
+
   return (
-    <blockquote
+    <div
       className={cn(
-        "font-display text-[28px] md:text-[32px] italic text-on-surface transition-opacity duration-500",
+        "transition-opacity duration-500",
         isVisible ? "opacity-100" : "opacity-0",
         className,
       )}
     >
-      {quotes[index]}
-    </blockquote>
+      <blockquote className="font-display text-[28px] md:text-[32px] italic text-on-surface mb-10">
+        {text}
+      </blockquote>
+
+      {(name || title) && (
+        <div className="flex flex-col items-center">
+          {name && (
+            <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-on-surface">
+              {name}
+            </p>
+          )}
+          {title && (
+            <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mt-1">
+              {title}
+            </p>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
