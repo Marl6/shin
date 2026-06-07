@@ -10,6 +10,7 @@ import Container from "@/components/layout/Container";
 import { buttonStyles } from "@/components/ui/Button";
 import Reveal from "@/components/ui/Reveal";
 import YoutubePlayerModal from "@/components/ui/YoutubePlayerModal";
+import QuoteRotator from "@/components/ui/QuoteRotator";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -19,33 +20,16 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-const episodes = [
+const quotes = [
   {
-    id: "141",
-    duration: "54 min",
-    title: "The Art of Negotiation with Chris Voss",
-    description:
-      "Learning tactical empathy required to win in business and life from a former FBI negotiator.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuALxeV-cxs1RqC6nZu_AoegtIERK2ifOw5vckomcVwdLB4BJjwzETauMc_21wBszqTWXiTO5xUoMOVRcIZdgVIe3EEYD3Dd7y1BAZctOx7LjYyV_1wNjdMqYi5PvbRpWNVneGQTPy6eDUsd-cATl2-uEw5wKAtSjTbJ1taS8EfPE8FclQQglNBz6EDxXxL5Xv5LWjiMIzyAFnWbQ4H1g1uKJ5VVuchEBhPoZtTVO-FNMF2oVaCTG_pr2bgEmmBaTXaGVbnec3gXeOCi",
+    text: "The American dream has changed. It's no longer just about buying a house and settling down—it's about building a business, becoming financially free, and expanding your horizons.",
+    name: "Mechelle McCain",
+    title: "Episode 142 Guest",
   },
   {
-    id: "140",
-    duration: "62 min",
-    title: "Generational Wealth Engineering",
-    description:
-      "How the world's most successful families preserve and grow assets across generations.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAE7A6ruusxmmA6tLQ7-VvmxATNKw7XW7qgiWGySj652ZqY7BfxyJtjEGvNC-Hr-3LJR0UVM9JTnsqdbVF9jalCh6kcf7xhRdZJ95DQW-C8ja4wG5hhyHZB9itqHjhHvZh4D2DB-ra1PWBztS6vymGoLgulTGZje_7f7npwXf6pwfGbXwLAtit9Gqf20tKWMdF_UDPjjCvn-o3x7hzFU7ZwpawJyDE057OTFH-hluOEB76V80n0u0xf63iYBlpEMqWR7_By3aUn8mHx",
-  },
-  {
-    id: "139",
-    duration: "48 min",
-    title: "The Blueprint for Modern Leadership",
-    description:
-      "Navigating the complexities of leading a global organization in the digital-first era.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBir6jK86eVPw95lUzp5F0lzfnfeWfYxo8CWc3f5n7RPxG1ANUeeBq1dRTs3pEAwXyYqU7t8HrBZDiFwfgpEjDoxxSEVnPuuNdeEWRndx9jBa57yepdJIhLrM3FtTN_0xhGlfUjbjL2Q4xooagmDt0KBdUdJgCTXU3DZD057w5HVVUn5sUUPHfTaRQLLPoWek6lelIraNWN2T-z9gycyc6GdubzzApzzTpGFYsK_ssyZnmFTdPqm9ufFWT3HFIlIgZz2ChEI6kdFl1f",
+    text: "Applying the math and discipline of a NASA launch team taught me one thing: success isn't a cosmic accident. If you study the principles of achievement, define your goals precisely, and build unwavering self-faith, you can build a trajectory that takes you anywhere in the solar system.",
+    name: "Gary Glass",
+    title: "Episode 141 Guest",
   },
 ];
 
@@ -199,28 +183,9 @@ export default async function PodcastPage() {
         <Container>
           <Reveal className="text-center max-w-3xl mx-auto">
             <span className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-6 block">
-              Podcast Highlight
+              Podcast Highlights
             </span>
-            <blockquote className="font-display text-[28px] md:text-[32px] italic text-on-surface mb-10">
-              &quot;Lorem Ipsum Dolor Sit Amet.&quot;
-            </blockquote>
-            <div className="flex flex-col items-center">
-              <div className="relative w-20 h-20 border border-divider overflow-hidden mb-4">
-                <Image
-                  src="/images/avatar-placeholder.svg"
-                  alt="Guest portrait"
-                  fill
-                  sizes="80px"
-                  className="object-cover grayscale"
-                />
-              </div>
-              <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-on-surface">
-                Dr. Anon Anon
-              </p>
-              <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant mt-1">
-                Episode 142 Guest
-              </p>
-            </div>
+            <QuoteRotator quotes={quotes} intervalMs={10000} />
           </Reveal>
         </Container>
       </section>

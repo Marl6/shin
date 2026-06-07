@@ -238,7 +238,7 @@ export default function BookPage() {
                   target="_blank"
                   rel="noreferrer"
                   className={buttonStyles({
-                    variant: "ghost",
+                    variant: "outline",
                     size: "lg",
                     className: "w-full",
                   })}
