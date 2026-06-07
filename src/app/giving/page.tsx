@@ -187,7 +187,7 @@ export default function GivingPage() {
                 community projects.
               </p>
               <Link
-                href="https://allforone.org/donate"
+                href="https://allforone.org/become-a-sponsor/"
                 target="_blank"
                 rel="noreferrer"
                 className={buttonStyles({ variant: "outline", size: "lg" })}

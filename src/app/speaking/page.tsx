@@ -195,7 +195,7 @@ export default function SpeakingPage() {
         </Container>
       </section> */}
 
-      <section className="py-24 md:py-32 bg-surface-container-lowest">
+      {/*<section className="py-24 md:py-32 bg-surface-container-lowest">
         <Container>
           <Reveal className="text-center mb-16">
             <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
@@ -242,7 +242,7 @@ export default function SpeakingPage() {
             ))}
           </div>
         </Container>
-      </section>
+      </section> */}
 
       {/* <section className="py-16">
         <Container>
@@ -279,7 +279,7 @@ export default function SpeakingPage() {
                 <div className="flex items-center gap-3">
                   <Mail className="h-4 w-4 text-secondary" />
                   <span className="font-body text-[16px] text-on-surface">
-                    email@test.com
+                    johnshin@gmail.com
                   </span>
                 </div>
                 <div className="flex items-center gap-3">

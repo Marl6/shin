@@ -50,7 +50,7 @@ export default function SiteFooter() {
             ))}
           </ul>
         </div>
-        <div className="md:col-span-3">
+        {/*<div className="md:col-span-3">
           <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
             Legal
           </p>
@@ -67,6 +67,7 @@ export default function SiteFooter() {
             ))}
           </ul>
         </div>
+        */}
         <div className="md:col-span-3">
           <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
             Connect
