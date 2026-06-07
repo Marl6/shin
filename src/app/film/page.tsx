@@ -26,6 +26,7 @@ const accessOptions = [
     note: "Lifetime access",
     cta: "Own a copy now",
     highlight: "Best Value",
+    href: "https://vimeo.com/ondemand/tgrlegacymovie",
     icon: <Download className="h-8 w-8" />,
     variant: "outline" as const,
   },
@@ -36,6 +37,7 @@ const accessOptions = [
     price: "$9.99",
     note: "48-hour access",
     cta: "Rent a copy now",
+    href: "https://vimeo.com/ondemand/tgrlegacymovie",
     icon: <Film className="h-8 w-8" />,
     variant: "outline" as const,
   },
@@ -80,7 +82,7 @@ export default function FilmPage() {
             <div className="flex flex-wrap gap-4">
               <Link
                 className={buttonStyles({ variant: "primary", size: "lg" })}
-                href="/#trailer"
+                href="#trailer"
               >
                 <Play className="h-4 w-4" />
                 Watch Trailer
@@ -122,16 +124,16 @@ export default function FilmPage() {
                   The Mission
                 </h3>
                 <p className="font-body text-[16px] text-on-surface-variant">
-                  Unlocking the secrets of the world's most successful minds
-                  through a narrative that bridges timeless principles with
-                  modern ambition.
+                  Unlocking the secrets of the world&apos;s most successful
+                  minds through a narrative that bridges timeless principles
+                  with modern ambition.
                 </p>
               </div>
               <div className="md:col-span-8">
                 <p className="font-body text-[18px] italic text-on-surface">
-                  "This film is not just a documentary; it is a movement. We are
-                  here to prove that the mind, when directed with purpose, can
-                  achieve the impossible."
+                  &quot;This film is not just a documentary; it is a movement.
+                  We are here to prove that the mind, when directed with
+                  purpose, can achieve the impossible.&quot;
                 </p>
               </div>
             </div>
@@ -171,7 +173,10 @@ export default function FilmPage() {
                     </div>
                   ) : null}
                   {option.cta ? (
-                    <button
+                    <Link
+                      href={option.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={buttonStyles({
                         variant: option.variant,
                         size: "md",
@@ -179,14 +184,16 @@ export default function FilmPage() {
                       })}
                     >
                       {option.cta}
-                    </button>
+                    </Link>
                   ) : (
                     <div className="space-y-4 mt-6">
                       {["Apple TV+", "Amazon Prime", "Google Play"].map(
                         (platform) => (
                           <Link
                             key={platform}
-                            href="#"
+                            href={option.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="flex items-center justify-between text-on-surface-variant hover:text-secondary"
                           >
                             <span className="font-ui text-[12px] uppercase tracking-[0.2em]">
@@ -215,7 +222,7 @@ export default function FilmPage() {
               <p className="font-body text-[18px] text-on-surface-variant mb-6">
                 Under the executive production of Sir John Shin, the production
                 spanned three continents, interviewing titans of industry to
-                distill the essence of Napoleon Hill's masterpiece.
+                distill the essence of Napoleon Hill&apos;s masterpiece.
               </p>
               <p className="font-body text-[16px] text-on-surface-variant">
                 Every frame was designed to evoke the intellectual intensity of
@@ -291,25 +298,30 @@ export default function FilmPage() {
       </section>
 
       <section className="py-24 md:py-32 bg-surface-container-low">
+        <Reveal className="text-center mb-16">
+          <p className="font-ui text-[12px] uppercase tracking-[0.3em] text-secondary mb-4">
+            Movie Reviews
+          </p>
+        </Reveal>
         <Container>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 quote:
-                  "A visual masterpiece that translates Napoleon Hills philosophy into a breathtaking cinematic journey.",
-                source: "Forbes Magazine",
+                  "Very inspirational. The takeaway is buy the book, read it, and read it again until you master it's lessons.",
+                source: "Alex Simchison",
                 rating: 5,
               },
               {
                 quote:
-                  "Shin produced a landmark piece of media that should be required viewing for every aspiring leader.",
-                source: "Entrepreneur",
-                rating: 4,
+                  "This one is a life changer! WATCH IT! With all the drama in today's world, Think and Grow Rich is salvation. You'll wonder why politicians don't teach this stuff...",
+                source: "Andrewclements-09474",
+                rating: 5,
               },
               {
                 quote:
-                  "The production value is staggering. It feels as much like art as it does documentary.",
-                source: "Variety",
+                  "This shows different aspects of life. Very motivational. The presentation is damm awsome. Short video clips covers the very big information required for anyone to get inspired. This define every details book wanted the readers to aware.",
+                source: "manjilsinghmaharjan",
                 rating: 5,
               },
             ].map((review, index) => (
@@ -317,7 +329,7 @@ export default function FilmPage() {
                 <div className="border border-divider p-8 h-full">
                   <Stars rating={review.rating} className="mb-6" />
                   <p className="font-body text-[16px] italic text-on-surface mb-6">
-                    "{review.quote}"
+                    &quot;{review.quote}&quot;
                   </p>
                   <p className="font-ui text-[10px] uppercase tracking-[0.3em] text-on-surface-variant">
                     {review.source}

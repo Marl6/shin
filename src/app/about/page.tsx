@@ -226,7 +226,7 @@ export default function AboutPage() {
                 Where Every Legacy Begins
               </p>
             </Reveal>
-            <Reveal delayMs={150}>
+            {/*<Reveal delayMs={150}>
               <Link
                 href="/#about"
                 className={buttonStyles({ variant: "outline" })}
@@ -234,6 +234,7 @@ export default function AboutPage() {
                 View Full Archive
               </Link>
             </Reveal>
+            */}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
             <Reveal className="md:col-span-8">
@@ -308,7 +309,7 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="py-24 md:py-32">
+      {/*<section className="py-24 md:py-32">
         <Container>
           <Reveal>
             <div className="border border-divider p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-10 relative overflow-hidden">
@@ -333,6 +334,7 @@ export default function AboutPage() {
           </Reveal>
         </Container>
       </section>
+      */}
     </div>
   );
 }
