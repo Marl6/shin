@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X } from "lucide-react";
 
@@ -13,6 +13,7 @@ import { navItems } from "@/components/layout/navItems";
 
 export default function SiteNav() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string | null>(null);
 
@@ -81,6 +82,9 @@ export default function SiteNav() {
       window.history.pushState(null, "", cleanPath);
       setActiveSection(sectionId);
       activeSectionRef.current = sectionId;
+    } else {
+      const cleanPath = sectionId === "home" ? "/" : `/${sectionId}`;
+      router.push(cleanPath);
     }
   };
 
