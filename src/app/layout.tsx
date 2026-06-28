@@ -4,6 +4,7 @@ import { Libre_Caslon_Text, Outfit, Playfair_Display } from "next/font/google";
 import GrainOverlay from "@/components/layout/GrainOverlay";
 import SiteFooter from "@/components/layout/SiteFooter";
 import SiteNav from "@/components/layout/SiteNav";
+import { Analytics } from "@vercel/analytics/next";
 
 import "./globals.css";
 
@@ -48,6 +49,7 @@ export default function RootLayout({
         <SiteNav />
         <main className="flex-1 pt-24 md:pt-32">{children}</main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
